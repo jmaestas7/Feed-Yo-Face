@@ -1,194 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Feed Yo Face</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-	<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <title>Feed Yo Face</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
-	<!-- flexbox -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="jumbotron">
-					<h1 class="text-center">Feed Yo Face</h1>
-					<h2 class="text-center">Sweet Food App Baby</h3>
+    <nav>
+        <div class="nav-wrapper">
+            <div class="container">
+                <a class="brand-logo center">Feed Yo Face   <small>Sweet Food Baby App</small></a>
+                <ul id="nav-mobile" class="right">
+                    <li><a class="waves-effect waves-light btn blue-grey darken-1" id="logOut"><i class="material-icons right">first_page</i>Log Out</a></li>
+                </ul>                
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+
+        <div class="col s12 l7">
+            <div class="card">
+                <div class="card-content">
+                    <h5>Add Pantry Items</h5>
+                                <form>
+                                    <div class="row">
+                                        <div class="input-field col s4">
+                                            <input id="form-ingredient" type="text" class="validate">
+                                            <label for="password">Ingredient</label>
+                                        </div>
+                                        <div class="input-field col s2">
+                                            <input id="form-quantity" type="text" class="validate">
+                                            <label for="password">Quantity</label>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <select id="units">
+                                                <option value="" disabled selected class="form-unit">Choose Unit</option>
+                                                <option value="Teaspoon" class="form-unit">Teaspoon</option>
+                                                <option value="Tablespoon" class="form-unit">Tablespoon</option>
+                                                <option value="Fluid ounce" class="form-unit">Fluid ounce</option>
+                                                <option value="Cup" class="form-unit">Cup</option>
+                                                <option value="Pint" class="form-unit">Pint</option>
+                                                <option value="Quart" class="form-unit">Quart</option>
+                                                <option value="Gallon" class="form-unit">Gallon</option>
+                                                <option value="Piece" class="form-unit">Piece</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-field col s3">
+                                            <a class="waves-effect waves-light btn blue-grey darken-1" id="form-addIngredient">Add to Pantry</a>
+                                        </div>
+                                    </div>
+                                </form>
+                                <h5>View Pantry Items</h5>
+                                <table class="bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Ingredient</th>
+                                            <th>Quantity</th>
+                                            <th>Unit</th>
+                                            <th>Cook Wit Deez</th>
+                                            <th>Remove Item</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pantry-list">
+                                    </tbody>
+                                </table>
+                                <a class="waves-effect waves-light btn blue-grey darken-1" id="addToBowl">Add to Mixing Bowl</a>
+                                <a class="waves-effect waves-light btn blue-grey darken-1" id="findOnAmazon">Find on Amazon</a>
+                                <a class="waves-effect waves-light btn blue-grey darken-1" id="findOnWalmart">Find on WalMart</a>
+                </div>
+            </div>
+        </div>
+    	<div class="col s12 l5">
+        	<div class="card mixingBowl">
+        	    <div class="card-content white-text">
+        	        <span class="card-title">Recipe Search</span>
+        	        <form>
+        	        	<div class ="col s12" id="ingredientList">
+							<label>Mixing Bowl <small>(Add ingredients from pantry)</small></label>
+                            <table class="bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Ingredient</th>
+                                        <th>Quantity</th>
+                                        <th>Unit</th>
+                                        <th>Remove Item</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mixingBowlList"></tbody>
+                            </table>
+						</div>
+						<!-- <div class ="col s12">
+                            <label>Please Exclude <small>(separate with commas)</small></label>
+                            <input type="text" name="exclude" class="exclude">
+                        </div> -->
+						<div class ="col s12" style="margin-top:20px;"><!--INLINE STYLING---------------------------------->
+                            <br>
+							<label>Max Calories</label>
+							<input type="number" name="calories" class="calories" value="2000">
+						</div>
+						<div class="browser-default col s6">
+						    <select class="dropdown-menu courseDropdown" aria-labelledby="form-unit">
+						    	<option value="" disabled selected>Choose Type</option>
+						    	<option value="main+course" class="type">Main Course</option>
+								<option value="side+dish" class="type">Side Dish</option>
+								<option value="dessert" class="type">Dessert</option>
+								<option value="appetizer" class="type">Appetizer</option>
+								<option value="salad" class="type">Salad</option>
+						    </select>
+						</div>
+						<div class="browser-default col s4">
+						    <select class="dropdown-menu dietDropdown" aria-labelledby="form-unit">
+						    	<option value="" disabled selected>Choose Diet</option>
+						    	<option value="pescetarian" class="diet">Pescetarian</option>
+								<option value="lacto+vegetarian" class="diet">Lacto Vegetarian</option>
+								<option value="ovo+vegetarian" class="diet">Ovo Vegetarian</option>
+								<option value="vegan" class="diet">Vegan</option>
+								<option value="paleo" class="diet">Paleo</option>
+						    </select>
+						</div>
+        	        </form>
+        	    </div>
+        	    <div class="col s12">
+        	    	<div class="card-action">
+        	    	    <a href="#" id="select">Search for Recipes</a>
+        	    	</div>
+        	    </div>
+        	</div>
+        </div>
+    </div>
+    <div class="row" id="recipe-cards">
+    </div>
+    <footer class="page-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h5 class="white-text">Random Food Joke</h5>
+					<p class="grey-text text-lighten-4" id="joke"></p>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<!-- add employees form -->
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">Add Ingredient</div>
-					<div class="card-block">
-						<form>
-			                <div class="form-group col-md-6" style="display:inline-block">
-			                  <label for="form-employeeName">Ingredient</label>
-			                  <input class="form-control" id="form-ingredient" type="text">
-			                </div>
-			                <div class="form-group col-md-2" style="display:inline-block">
-			                  <label for="form-quantity">Quantity</label>
-			                  <input class="form-control" id="form-quantity" type="number">
-			                </div>
-			                <div class="dropdown col-md-2" style="display:inline-block">
-			                	<label for="form-unit"style="display:block;">Unit</label>
-						  		<button class="btn btn-secondary dropdown-toggle" type="button" id="form-unit" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">------</button>
-							  	<div class="dropdown-menu" aria-labelledby="form-unit">
-							    	<button class="dropdown-item" type="button">Teaspoon</button>
-							    	<button class="dropdown-item" type="button">Tablespoon</button>
-							    	<button class="dropdown-item" type="button">Fluid ounce</button>
-							    	<button class="dropdown-item" type="button">Cup</button>
-							    	<button class="dropdown-item" type="button">Pint</button>
-							    	<button class="dropdown-item" type="button">Quart</button>
-							    	<button class="dropdown-item" type="button">Gallon</button>
-							    	<button class="dropdown-item" type="button">Unit</button>
-							  	</div>
-							</div>
-			                <!-- <div class="form-group">
-			                  <label for="form-unit">Unit</label>
-			                  <input class="form-control" id="form-unit" type="date">
-			                </div> -->
-			                <button class="form-group btn btn-primary col-md-1" id="form-addIngredient" type="submit" style="margin-bottom:0;">+</button>	               
-			              </form>
-					</div>
-				</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2017 Team Whatever Our Name Is
 			</div>
 		</div>
-		<div class="row">
-			<!-- current employees table -->
-			<div class="col-md-12">
-				<div class="card">
-					<div class="card-header">Pantry</div>
-					<div class="card-block">
-						<table class="table">
-							<thead>
-								<tr>
-									<th>Ingredient</th>
-									<th>Quantity</th>
-									<th>Unit</th>
-									<th>Cook Wit Deez</th>
-									<th>Amazon</th>
-									<th>Walmart</th>
-								</tr>
-							</thead>
-							<tbody id="pantry-list">
-								<tr>
-									<td scope="row" id="display-ingredient"></td>
-									<td id="display-quantity"></td>
-									<td id="display-Unit"></td>
-									<td id="display-cookWitDeez"></td>
-									<td id="display-Amazon"></td>
-									<td id="display-Walmart"></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<script type="text/javascript">
-		$(".dropdown-menu button").click(function(){
-			unit = $(this).text();
-			console.log(unit);
-			$("#form-unit").text($(this).text());
-			/*$("#dropdownMenu2").val($(this).text());*/
-		});
-
-		// Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyDYf02rgUgE9pbvz9axbMOfOBDD-avr27g",
-		    authDomain: "downbutton-d5480.firebaseapp.com",
-		    databaseURL: "https://downbutton-d5480.firebaseio.com",
-		    projectId: "downbutton-d5480",
-		    storageBucket: "downbutton-d5480.appspot.com",
-		    messagingSenderId: "445064906768"
-		  };
-		  firebase.initializeApp(config);
-
-
-		  var database = firebase.database();
-
-	// Initial Values
-		var ingredient = "";
-		var quantity = "";
-		var unit = "";
-
-		// Capture Button Click
-    $("#form-addIngredient").on("click", function() {
-      // Don't refresh the page!
-      event.preventDefault();
-
-      // YOUR TASK!!!
-
-      // Code in the logic for storing and retrieving the most recent user.
-      //store user
-
-      ingredient = $("#form-ingredient").val().trim();
-      quantity = $("#form-quantity").val().trim();
-
-      database.ref().push({
-      	ingredient,
-      	quantity,
-      	unit:unit
-      });
-    });
-
-    //retreive user
-      database.ref().on("child_added", function(childSnapshot) {
-
-      	// Log everything that's coming out of snapshot
-	      console.log(childSnapshot.val().ingredient);
-	      console.log(childSnapshot.val().quantity);
-	      console.log(childSnapshot.val().unit);
-      	/*<tr>
-			<th scope="row" id="display-employeeName"></th>
-			<th id="display-role"></th>
-			<th id="display-startDate"></th>
-			<th id="display-monthsWorked"></th>
-			<th id="display-monthlyRate"></th>
-			<th id="display-totalBilled"></th>
-		</tr>*/
-
-		$("#pantry-list").append("<tr><td>" + childSnapshot.val().ingredient + "</td><td>"
-			+ childSnapshot.val().quantity + "</td><td>"  
-			+ childSnapshot.val().unit + "</td><td>"
-			+ "checkbox" + "</td><td>"
-			+ "Amazon Button" + "</td><td>"
-			+ "Walmart Button" + "</td></tr>" );
-
-		/*var unixDate = moment(childSnapshot.val().startDate, "MM/DD/YYYY").format("X");
-		unixDate = moment(unixDate, "MM/DD/YYYY");
-		console.log("unix date: " + unixDate);
-		var snapdate = childSnapshot.val().startDate;
-
-		var unixDate = moment.unix(snapdate, "X");
-		console.log("unixDate: " + unixDate);
-		console.log("snapdate: " + snapdate);*/
-
-
-        $("#display-employeeName").html(childSnapshot.val().employeeName);
-        /*$("#display-role").html(childSnapshot.val().role);
-        $("#display-startDate").html(childSnapshot.val().startDate);
-        $("#display-monthlyRate").html(childSnapshot.val().monthlyRate);*/
-      }, function(errorObject) {
-        console.log("errors handled: " + errorObject.code);
-      });
-
-      /*database.ref().orderbyChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-      	$("#display-employeeName").html(snapshot.val().employeeName);
-        $("#display-role").html(snapshot.val().role);
-        $("#display-startDate").html(snapshot.val().startDate);
-        $("#display-monthlyRate").html(snapshot.val().monthlyRate);
-      });*/
-            // Don't forget to handle the "initial load"
-	</script>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
 </body>
+
 </html>
