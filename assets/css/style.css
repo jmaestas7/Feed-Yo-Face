@@ -32,7 +32,6 @@ label {
     top: 0; 
     left: 0;
     width: 90%;
-    height: 90%;
 }
 
 .recipeCard {
@@ -62,6 +61,11 @@ label {
 	height: 500px;
 }
 
+
+#amazon-modal {
+  width: 90%;
+  overflow: auto;
+}
 
 #ingredientList {
 	min-height: 200px;

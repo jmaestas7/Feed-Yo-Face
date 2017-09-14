@@ -27,11 +27,11 @@
 		            $xml = $(xmlDoc);
 		        var result = "";
 		        if ($xml.find("Item").length > 0) {
-		            result = "<div class='col-lg-12'>";
+		            result = "<div style='margin: 0 auto';>";
 		            var keyword = "<?php echo $searchtag; ?>";
 		            $xml.find("Item").each(function() {
-		                result +=  "<div class='product-box'><a target='_blank' href='" + $(this).find("DetailPageURL").text() + "'><img src='";
-		                result +=  $(this).find("MediumImage").find("URL").text() + "' max-width='120' max-height='160'></a><div class='product-title'><h3>";
+		                result +=  "<div class='product-box' style='width: 9%;'><a target='_blank' href='" + $(this).find("DetailPageURL").text() + "'><img src='";
+		                result +=  $(this).find("MediumImage").find("URL").text() + "' width='80%' max-height='160'></a><div class='product-title'><h3>";
 		                result +=  $(this).find("Title").text() + "</h3></div><p class='product-price'>";
 		                result +=  $(this).find("ListPrice").find("FormattedPrice").text() + "<br><a target='_blank' style='color: #337ab7; text-decoration:none;' href='";
 		                result +=  $(this).find("MoreOffersUrl").text() + "'> More offers </a></p><div><span class='a-button a-button-primary'><a target='_blank' href='";
