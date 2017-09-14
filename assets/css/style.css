@@ -1,0 +1,133 @@
+body {
+	background-color: #F3F3F3;
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+main {
+    flex: 1 0 auto;
+  }
+small {
+	font-size: 20px;
+}
+label {
+	color: white;
+	font-size: 18px;
+}
+.card {
+	/* min-height: 570px; */
+	margin-top: 30px;
+}
+
+.fluidMedia {
+    position: relative;
+    padding-bottom: 56.25%; /* proportion value to aspect ratio 16:9 (9 / 16 = 0.5625 or 56.25%) */
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+}
+
+.fluidMedia iframe {
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 90%;
+    height: 90%;
+}
+
+.recipeCard {
+	min-height: 500px;
+}
+
+.recipeImage {
+	height: 250px;
+}
+
+.searchButton {
+	margin: 10px;
+}
+
+.walmartDiv, .amazonDiv {
+	display: inline-block;
+	width: 90vw;
+	margin-top: 30px;
+} 
+
+ .walmartCardDiv {
+	position: relative;
+	height: auto;
+} 
+
+.walmartCard {
+	height: 500px;
+}
+
+
+#ingredientList {
+	min-height: 200px;
+}
+select {
+	display: visible;
+}
+small {
+	font-size: 16px;
+}
+nav {
+	background-color: #32C787;
+}
+.mixingBowl {
+	background-color: #424953;
+}
+.page-footer {
+	text-align: center;
+	background-color: #32C787;
+}
+
+.clickToMin {
+	font-size: 12px;
+}
+.signIn {
+	background-image: url(../images/spices.jpg);
+}
+.title {
+	text-align: center;
+	color: white;
+	background-color: rgba(92,41,50, 0.8);
+	margin-top: 10%;
+}
+#heading {
+	margin-bottom: 0;
+}
+#subHeading {
+	margin-top: 0;	
+}
+/* label color */
+   /* .input-field label {
+     color: #fff;
+   } */
+   /* label focus color */
+   .input-field input[type=text]:focus + label {
+     color: #fff;
+   }
+   /* label underline focus color */
+   .input-field input[type=text]:focus {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* valid color */
+   .input-field input[type=text].valid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* invalid color */
+   .input-field input[type=text].invalid {
+     border-bottom: 1px solid #fff;
+     box-shadow: 0 1px 0 0 #fff;
+   }
+   /* icon prefix focus color */
+   .input-field .prefix.active {
+     color: #fff;
+   }
+   .hidden {
+   	display: none;
+   }
